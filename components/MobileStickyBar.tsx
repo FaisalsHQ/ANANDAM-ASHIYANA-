@@ -14,17 +14,6 @@ export default function MobileStickyBar({ onOpenLeadModal, pageKey = 'home' }: M
 
   return (
     <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#181512] border-t border-[#3F3A33] shadow-2xl">
-      {/* Top Direct Line Bar */}
-      <div className="bg-[#24201A] border-b border-[#3F3A33] px-3 py-1 flex items-center justify-between text-[11px] font-bold text-[#D9C7A8]">
-        <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-[#B08D4F]">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          RERA Verified Helpline
-        </span>
-        <a href={PHONE_TEL} className="text-[#25D366] hover:underline font-mono text-xs flex items-center gap-1 font-extrabold">
-          <span>📞</span> {PHONE_DISPLAY}
-        </a>
-      </div>
-
       {/* Primary CTA Action Buttons */}
       <div className="p-2 flex items-center justify-between gap-1.5">
         {/* Direct Call Button */}

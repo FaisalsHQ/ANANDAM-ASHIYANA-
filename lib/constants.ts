@@ -3,14 +3,14 @@ export const SITE_TAGLINE = "Aapka Apna Ashiyana — Sector 36, Jhajjar";
 export const SITE_DOMAIN = "anandamashiyana.in";
 export const SITE_URL = "https://anandamashiyana.in";
 
-export const WA_NUMBER = "919315421291";
-export const PHONE_DISPLAY = "+91 9315421291";
-export const PHONE_TEL = "tel:+919315421291";
+export const WA_NUMBER = "919538824125";
+export const PHONE_DISPLAY = "+91 9538824125";
+export const PHONE_TEL = "tel:+919538824125";
 
 export const PHONE_SECONDARY_DISPLAY = "+91 9538824125";
 export const PHONE_SECONDARY_TEL = "tel:+919538824125";
 
-export const CONSULTANT_PHONE = "+91 9315421291";
+export const CONSULTANT_PHONE = "+91 9538824125";
 export const CONSULTANT_PHONE_SECONDARY = "+91 9538824125";
 export const CONSULTANT_EMAIL = "hello@anandamashiyana.in";
 export const SITE_ADDRESS = "Anandam Ashiyana Site, Sector 36, Chuchakwas / Talao Road, Jhajjar, Haryana - 124103";
