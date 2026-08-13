@@ -134,7 +134,7 @@ export default function LeadPopups({
                   Anandam Ashiyana — Booking Open
                 </h3>
                 <p className="text-xs text-[#D9C7A8] mt-1">
-                  Get today's plot availability, price list & payment plan directly on WhatsApp in 2 minutes.
+                  Get today&apos;s plot availability, price list & payment plan directly on WhatsApp in 2 minutes.
                 </p>
               </div>
 
@@ -169,7 +169,7 @@ export default function LeadPopups({
             <div className="p-2 sm:p-4">
               <div className="mb-3 text-center">
                 <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#B08D4F]/20 text-[#B08D4F] text-[10px] font-bold uppercase tracking-wider mb-1">
-                  Wait — Don't Miss Current Inventory
+                  Wait — Don&apos;t Miss Current Inventory
                 </span>
                 <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#FFFcf7]">
                   Limited DDJAY Freehold Plots

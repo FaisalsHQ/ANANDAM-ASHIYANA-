@@ -12,6 +12,8 @@ import {
   EMAILS,
   PHONE_DISPLAY,
   PHONE_TEL,
+  PHONE_SECONDARY_DISPLAY,
+  PHONE_SECONDARY_TEL,
   IDENTITY_DISCLAIMER,
   PRICE_DISCLAIMER,
   getWhatsAppLink,
@@ -95,7 +97,8 @@ export default function Footer() {
               </p>
               <p>
                 <span className="text-[#A39A8B] block">Direct WhatsApp & Helpline:</span>
-                <a href={PHONE_TEL} className="text-[#25D366] font-semibold hover:underline block">{PHONE_DISPLAY}</a>
+                <a href={PHONE_TEL} className="text-[#25D366] font-semibold hover:underline block">{PHONE_DISPLAY} (Primary)</a>
+                <a href={PHONE_SECONDARY_TEL} className="text-[#D9C7A8] font-semibold hover:underline block">{PHONE_SECONDARY_DISPLAY} (Secondary)</a>
               </p>
               <p className="pt-2 text-[11px] text-[#A39A8B]">
                 Operating Hours: Mon–Sun 9:30 AM – 7:30 PM IST

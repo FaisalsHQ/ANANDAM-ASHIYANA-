@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -9,6 +10,7 @@ import LeadPopups from '@/components/LeadPopups';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import MobileStickyBar from '@/components/MobileStickyBar';
 import JsonLd from '@/components/JsonLd';
+import { BLUR_DATA_URL } from '@/lib/constants';
 
 export default function GalleryPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -130,10 +132,14 @@ export default function GalleryPage() {
                 onClick={() => openModal(`Gallery: ${item.title}`)}
               >
                 <div className="relative h-52 overflow-hidden bg-[#24201A]">
-                  <img
+                  <Image
                     src={item.img}
                     alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                     <span className="px-3 py-1.5 bg-[#B08D4F] text-[#1B1814] font-bold text-[11px] uppercase tracking-wider rounded-md shadow">

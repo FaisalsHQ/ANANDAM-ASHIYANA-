@@ -29,13 +29,58 @@ import {
   EXPECTED_POSSESSION,
   IDENTITY_DISCLAIMER,
   PRICE_DISCLAIMER,
+  PHONE_DISPLAY,
+  PHONE_TEL,
   getWhatsAppLink,
   PAGE_WA_MESSAGES,
+  BLUR_DATA_URL,
 } from '@/lib/constants';
+import {
+  IconClubhouse,
+  IconSwimmingPool,
+  IconLawnTennis,
+  IconYogaZone,
+  IconCricketNet,
+  IconToddlerPlay,
+  IconGatedCommunity,
+  IconTempleZone,
+  IconMultipurposeGarden,
+  IconSquashCourt,
+  IconCardRoom,
+  IconTableTennis,
+  IconIndoorGym,
+  IconSurveillance,
+  IconDailyShops,
+  IconOutdoorGames
+} from '@/components/AmenityIcons';
 
 export default function HomePage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalSource, setModalSource] = useState('Home Page');
+  const [factsVisible, setFactsVisible] = useState(false);
+  const factsRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    const currentRef = factsRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setFactsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
 
   const openModal = (src = 'Home Page') => {
     setModalSource(src);
@@ -61,7 +106,7 @@ export default function HomePage() {
     },
     {
       question: "What plot sizes and starting prices are available in Anandam Ashiyana?",
-      answer: "The project features approved residential plots from 72 to 179 sq. yd. Market offerings highlight sizes around 97–178 sq. yd. Indicative starting price is ₹43.77 Lakh* onwards under a development-linked payment plan."
+      answer: `The project features approved residential plots from 72 to 179 sq. yd. Market offerings highlight sizes around 97–178 sq. yd. Indicative starting price is ${STARTING_PRICE} under a development-linked payment plan.`
     },
     {
       question: "What amenities are planned in the township?",
@@ -93,6 +138,8 @@ export default function HomePage() {
             alt="Anandam Ashiyana Plotted Township Sector 36 Jhajjar"
             fill
             priority
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1B1814] via-[#1B1814]/80 to-transparent" />
@@ -158,7 +205,7 @@ export default function HomePage() {
       </section>
 
       {/* Quick Facts Grid (10 Fact Cards) */}
-      <section className="py-12 bg-[#EFE6D8] border-b border-[#D9C7A8]">
+      <section ref={factsRef} className="py-12 bg-[#EFE6D8] border-b border-[#D9C7A8]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-8">
             <span className="text-xs font-bold uppercase tracking-widest text-[#8C6A2F]">
@@ -170,43 +217,43 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm">
+            <div className={`p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${factsVisible ? 'animate-card-fade delay-0' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
               <span className="text-xs text-[#3F3A33] block">Developer</span>
               <strong className="text-sm text-[#1B1814] font-serif block mt-1">Prish Group</strong>
             </div>
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm">
+            <div className={`p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${factsVisible ? 'animate-card-fade delay-100' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
               <span className="text-xs text-[#3F3A33] block">Total Land Area</span>
               <strong className="text-sm text-[#1B1814] font-serif block mt-1">{PROJECT_AREA}</strong>
             </div>
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm">
+            <div className={`p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${factsVisible ? 'animate-card-fade delay-150' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
               <span className="text-xs text-[#3F3A33] block">Total Plots</span>
               <strong className="text-sm text-[#1B1814] font-serif block mt-1">{TOTAL_PLOTS}</strong>
             </div>
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm">
+            <div className={`p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${factsVisible ? 'animate-card-fade delay-200' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
               <span className="text-xs text-[#3F3A33] block">Plot Size Range</span>
               <strong className="text-sm text-[#1B1814] font-serif block mt-1">72 – 179 Sq. Yd.</strong>
             </div>
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm">
+            <div className={`p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${factsVisible ? 'animate-card-fade delay-250' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
               <span className="text-xs text-[#3F3A33] block">Indicative Price</span>
               <strong className="text-sm text-[#B08D4F] font-serif block mt-1">{STARTING_PRICE}</strong>
             </div>
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm">
+            <div className={`p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${factsVisible ? 'animate-card-fade delay-300' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
               <span className="text-xs text-[#3F3A33] block">Policy Scheme</span>
               <strong className="text-sm text-[#1B1814] font-serif block mt-1">DDJAY Haryana</strong>
             </div>
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm">
+            <div className={`p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${factsVisible ? 'animate-card-fade delay-350' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
               <span className="text-xs text-[#3F3A33] block">RERA Registration</span>
               <strong className="text-xs text-[#1B1814] font-semibold block mt-1">{RERA_NUMBER}</strong>
             </div>
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm">
+            <div className={`p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${factsVisible ? 'animate-card-fade delay-400' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
               <span className="text-xs text-[#3F3A33] block">DTCP Licence</span>
               <strong className="text-xs text-[#1B1814] font-semibold block mt-1">Licence 79 of 2025</strong>
             </div>
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm">
+            <div className={`p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${factsVisible ? 'animate-card-fade delay-450' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
               <span className="text-xs text-[#3F3A33] block">Internal Roads</span>
               <strong className="text-sm text-[#1B1814] font-serif block mt-1">24m & 9m Wide</strong>
             </div>
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm">
+            <div className={`p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${factsVisible ? 'animate-card-fade delay-500' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
               <span className="text-xs text-[#3F3A33] block">Commercial Hub</span>
               <strong className="text-sm text-[#1B1814] font-serif block mt-1">{COMMERCIAL_AREA}</strong>
             </div>
@@ -273,7 +320,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Card 1 */}
-            <div className="bg-[#F7F1E8] border border-[#D9C7A8] rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-[#F7F1E8] border border-[#D9C7A8] rounded-2xl p-6 flex flex-col justify-between shadow-sm animate-card-fade transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
               <div className="space-y-3">
                 <span className="px-2.5 py-1 bg-[#B08D4F]/20 text-[#8C6A2F] text-xs font-bold uppercase rounded inline-block">
                   Residential Inventory
@@ -285,7 +332,7 @@ export default function HomePage() {
                   184 approved plot parcels ranging from 72 sq. yd. to 179 sq. yd. Build your independent dream home with stilt + floors construction options as per DTCP DDJAY bylaws.
                 </p>
                 <div className="pt-2 text-xs font-semibold text-[#B08D4F]">
-                  Indicative Price: ₹43.77 Lakh* onwards
+                  Indicative Price: {STARTING_PRICE}
                 </div>
               </div>
               <div className="pt-6">
@@ -299,7 +346,7 @@ export default function HomePage() {
             </div>
 
             {/* Card 2 */}
-            <div className="bg-[#F7F1E8] border border-[#D9C7A8] rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-[#F7F1E8] border border-[#D9C7A8] rounded-2xl p-6 flex flex-col justify-between shadow-sm animate-card-fade delay-150 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
               <div className="space-y-3">
                 <span className="px-2.5 py-1 bg-[#2F4A3A]/20 text-[#2F4A3A] text-xs font-bold uppercase rounded inline-block">
                   Daily Convenience
@@ -325,7 +372,7 @@ export default function HomePage() {
             </div>
 
             {/* Card 3 */}
-            <div className="bg-[#F7F1E8] border border-[#D9C7A8] rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-[#F7F1E8] border border-[#D9C7A8] rounded-2xl p-6 flex flex-col justify-between shadow-sm animate-card-fade delay-300 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
               <div className="space-y-3">
                 <span className="px-2.5 py-1 bg-[#8C6A2F]/20 text-[#8C6A2F] text-xs font-bold uppercase rounded inline-block">
                   Future Home Architecture
@@ -366,7 +413,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="p-6 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl space-y-2">
+            <div className="p-6 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl space-y-2 animate-card-fade transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               <div className="w-10 h-10 rounded-lg bg-[#B08D4F]/20 text-[#8C6A2F] font-bold text-lg flex items-center justify-center">
                 1
               </div>
@@ -378,7 +425,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="p-6 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl space-y-2">
+            <div className="p-6 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl space-y-2 animate-card-fade delay-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               <div className="w-10 h-10 rounded-lg bg-[#2F4A3A]/20 text-[#2F4A3A] font-bold text-lg flex items-center justify-center">
                 2
               </div>
@@ -390,7 +437,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="p-6 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl space-y-2">
+            <div className="p-6 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl space-y-2 animate-card-fade delay-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               <div className="w-10 h-10 rounded-lg bg-[#B08D4F]/20 text-[#8C6A2F] font-bold text-lg flex items-center justify-center">
                 3
               </div>
@@ -402,7 +449,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="p-6 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl space-y-2">
+            <div className="p-6 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl space-y-2 animate-card-fade delay-300 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               <div className="w-10 h-10 rounded-lg bg-[#2F4A3A]/20 text-[#2F4A3A] font-bold text-lg flex items-center justify-center">
                 4
               </div>
@@ -410,11 +457,11 @@ export default function HomePage() {
                 Clubhouse & Lifestyle Amenities
               </h3>
               <p className="text-xs text-[#3F3A33] leading-relaxed">
-                Enjoy a swimming pool, lawn tennis court, indoor gym, yoga zone, cricket net, toddler's play park, and temple zone within the campus.
+                Enjoy a swimming pool, lawn tennis court, indoor gym, yoga zone, cricket net, toddler&apos;s play park, and temple zone within the campus.
               </p>
             </div>
 
-            <div className="p-6 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl space-y-2">
+            <div className="p-6 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl space-y-2 animate-card-fade delay-400 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               <div className="w-10 h-10 rounded-lg bg-[#B08D4F]/20 text-[#8C6A2F] font-bold text-lg flex items-center justify-center">
                 5
               </div>
@@ -426,7 +473,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="p-6 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl space-y-2">
+            <div className="p-6 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl space-y-2 animate-card-fade delay-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               <div className="w-10 h-10 rounded-lg bg-[#2F4A3A]/20 text-[#2F4A3A] font-bold text-lg flex items-center justify-center">
                 6
               </div>
@@ -441,73 +488,105 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Amenities Teaser (8 Grid Tiles) */}
-      <section className="py-16 bg-[#F7F1E8] border-b border-[#D9C7A8]">
+      {/* Amenities Teaser (Modern Plotted Township Facilities) */}
+      <section className="py-16 bg-[#2A3B2A] text-[#FFFcf7] border-b border-[#3F3A33]">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12 text-center md:text-left">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#8C6A2F]">
+              <span className="px-3 py-1 bg-[#B08D4F]/20 text-[#D9C7A8] text-xs font-bold uppercase tracking-widest rounded-full inline-block mb-2">
                 Modern Plotted Township Facilities
               </span>
-              <h2 className="font-serif text-3xl font-bold text-[#1B1814] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#FFFcf7]">
                 Township Amenities at Anandam Ashiyana
               </h2>
             </div>
             <Link
               href="/amenities"
-              className="px-5 py-2.5 bg-[#2F4A3A] hover:bg-[#1E3328] text-[#FFFcf7] font-bold text-xs uppercase tracking-wider rounded-lg transition-all"
+              className="px-6 py-3 bg-[#B08D4F] hover:bg-[#8C6A2F] text-[#1B1814] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md"
             >
               Explore All Amenities →
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl text-center space-y-2">
-              <div className="text-2xl">🏊‍♂️</div>
-              <h4 className="font-bold text-xs text-[#1B1814]">Swimming Pool</h4>
-              <p className="text-[11px] text-[#A39A8B]">Temperature regulated pool & deck</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-4 border-t border-[#D9C7A8]/20 pt-8">
+            <div className="flex flex-col items-center text-center p-3 sm:border-r border-[#D9C7A8]/20 space-y-3 group">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFFcf7]/10 flex items-center justify-center text-[#E6C687] group-hover:scale-110 transition-transform shadow-inner">
+                <IconClubhouse className="w-8 h-8" color="#E6C687" />
+              </div>
+              <div>
+                <h4 className="font-serif font-bold text-sm text-[#FFFcf7]">Club House</h4>
+                <p className="text-[11px] text-[#D9C7A8] mt-0.5">Multi-purpose community hub</p>
+              </div>
             </div>
 
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl text-center space-y-2">
-              <div className="text-2xl">🏛️</div>
-              <h4 className="font-bold text-xs text-[#1B1814]">Club House</h4>
-              <p className="text-[11px] text-[#A39A8B]">Multi-purpose community hub</p>
+            <div className="flex flex-col items-center text-center p-3 sm:border-r border-[#D9C7A8]/20 space-y-3 group">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFFcf7]/10 flex items-center justify-center text-[#E6C687] group-hover:scale-110 transition-transform shadow-inner">
+                <IconSwimmingPool className="w-8 h-8" color="#E6C687" />
+              </div>
+              <div>
+                <h4 className="font-serif font-bold text-sm text-[#FFFcf7]">Swimming Pool</h4>
+                <p className="text-[11px] text-[#D9C7A8] mt-0.5">Temperature regulated pool & deck</p>
+              </div>
             </div>
 
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl text-center space-y-2">
-              <div className="text-2xl">🎾</div>
-              <h4 className="font-bold text-xs text-[#1B1814]">Lawn Tennis</h4>
-              <p className="text-[11px] text-[#A39A8B]">Outdoor sports court</p>
+            <div className="flex flex-col items-center text-center p-3 sm:border-r border-[#D9C7A8]/20 space-y-3 group">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFFcf7]/10 flex items-center justify-center text-[#E6C687] group-hover:scale-110 transition-transform shadow-inner">
+                <IconLawnTennis className="w-8 h-8" color="#E6C687" />
+              </div>
+              <div>
+                <h4 className="font-serif font-bold text-sm text-[#FFFcf7]">Lawn Tennis</h4>
+                <p className="text-[11px] text-[#D9C7A8] mt-0.5">Outdoor sports court</p>
+              </div>
             </div>
 
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl text-center space-y-2">
-              <div className="text-2xl">🧘‍♀️</div>
-              <h4 className="font-bold text-xs text-[#1B1814]">Yoga Zone</h4>
-              <p className="text-[11px] text-[#A39A8B]">Peaceful outdoor green lawn</p>
+            <div className="flex flex-col items-center text-center p-3 space-y-3 group">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFFcf7]/10 flex items-center justify-center text-[#E6C687] group-hover:scale-110 transition-transform shadow-inner">
+                <IconYogaZone className="w-8 h-8" color="#E6C687" />
+              </div>
+              <div>
+                <h4 className="font-serif font-bold text-sm text-[#FFFcf7]">Yoga Zone</h4>
+                <p className="text-[11px] text-[#D9C7A8] mt-0.5">Peaceful outdoor green lawn</p>
+              </div>
             </div>
 
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl text-center space-y-2">
-              <div className="text-2xl">🏏</div>
-              <h4 className="font-bold text-xs text-[#1B1814]">Cricket Net</h4>
-              <p className="text-[11px] text-[#A39A8B]">Practice net for enthusiasts</p>
+            <div className="flex flex-col items-center text-center p-3 sm:border-r border-[#D9C7A8]/20 space-y-3 group border-t border-[#D9C7A8]/20 pt-6">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFFcf7]/10 flex items-center justify-center text-[#E6C687] group-hover:scale-110 transition-transform shadow-inner">
+                <IconCricketNet className="w-8 h-8" color="#E6C687" />
+              </div>
+              <div>
+                <h4 className="font-serif font-bold text-sm text-[#FFFcf7]">Cricket Net</h4>
+                <p className="text-[11px] text-[#D9C7A8] mt-0.5">Practice net for enthusiasts</p>
+              </div>
             </div>
 
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl text-center space-y-2">
-              <div className="text-2xl">🛝</div>
-              <h4 className="font-bold text-xs text-[#1B1814]">Toddler Play Area</h4>
-              <p className="text-[11px] text-[#A39A8B]">Safe cushioned kids zone</p>
+            <div className="flex flex-col items-center text-center p-3 sm:border-r border-[#D9C7A8]/20 space-y-3 group border-t border-[#D9C7A8]/20 pt-6">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFFcf7]/10 flex items-center justify-center text-[#E6C687] group-hover:scale-110 transition-transform shadow-inner">
+                <IconToddlerPlay className="w-8 h-8" color="#E6C687" />
+              </div>
+              <div>
+                <h4 className="font-serif font-bold text-sm text-[#FFFcf7]">Toddler Play Area</h4>
+                <p className="text-[11px] text-[#D9C7A8] mt-0.5">Safe cushioned kids zone</p>
+              </div>
             </div>
 
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl text-center space-y-2">
-              <div className="text-2xl">🛡️</div>
-              <h4 className="font-bold text-xs text-[#1B1814]">24x7 Security</h4>
-              <p className="text-[11px] text-[#A39A8B]">Gated perimeter & CCTV</p>
+            <div className="flex flex-col items-center text-center p-3 sm:border-r border-[#D9C7A8]/20 space-y-3 group border-t border-[#D9C7A8]/20 pt-6">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFFcf7]/10 flex items-center justify-center text-[#E6C687] group-hover:scale-110 transition-transform shadow-inner">
+                <IconGatedCommunity className="w-8 h-8" color="#E6C687" />
+              </div>
+              <div>
+                <h4 className="font-serif font-bold text-sm text-[#FFFcf7]">Gated Community</h4>
+                <p className="text-[11px] text-[#D9C7A8] mt-0.5">Perimeter wall & security</p>
+              </div>
             </div>
 
-            <div className="p-4 bg-[#FFFcf7] border border-[#D9C7A8] rounded-xl text-center space-y-2">
-              <div className="text-2xl">🛕</div>
-              <h4 className="font-bold text-xs text-[#1B1814]">Temple Zone</h4>
-              <p className="text-[11px] text-[#A39A8B]">Dedicated spiritual space</p>
+            <div className="flex flex-col items-center text-center p-3 space-y-3 group border-t border-[#D9C7A8]/20 pt-6">
+              <div className="w-14 h-14 rounded-2xl bg-[#FFFcf7]/10 flex items-center justify-center text-[#E6C687] group-hover:scale-110 transition-transform shadow-inner">
+                <IconMultipurposeGarden className="w-8 h-8" color="#E6C687" />
+              </div>
+              <div>
+                <h4 className="font-serif font-bold text-sm text-[#FFFcf7]">Multipurpose Garden</h4>
+                <p className="text-[11px] text-[#D9C7A8] mt-0.5">Central park & green lawn</p>
+              </div>
             </div>
           </div>
         </div>
@@ -589,7 +668,7 @@ export default function HomePage() {
               Indicative Pricing & Payment Schedule
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#FFFcf7]">
-              Starting at ₹43.77 Lakh* Onwards
+              Starting at {STARTING_PRICE}
             </h2>
             <p className="text-xs text-[#D9C7A8]">
               Flexible Development-Linked Payment Plan available. Request complete size-wise cost breakdown sheet.
@@ -741,7 +820,7 @@ export default function HomePage() {
               Connect with our RERA-verified consultant team for instant WhatsApp assistance, layout PDF map delivery, and free site visit arrangement.
             </p>
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 text-xs text-[#A39A8B]">
-              <span>📞 Direct Line: <a href="tel:+911234567890" className="text-[#25D366] font-bold">+91 1234567890</a></span>
+              <span>📞 Direct Line: <a href={PHONE_TEL} className="text-[#25D366] font-bold">{PHONE_DISPLAY}</a></span>
               <span>✉️ Email: <a href="mailto:hello@anandamashiyana.in" className="text-[#B08D4F] underline">hello@anandamashiyana.in</a></span>
             </div>
           </div>

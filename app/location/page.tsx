@@ -71,7 +71,7 @@ export default function LocationPage() {
               <strong>Sector 36, Jhajjar</strong> is emerging as one of the most promising residential micro-markets in the western National Capital Region (NCR). Positioned adjacent to the established Jhajjar city center, Sector 36 benefits from direct access to major state highways connecting Chuchakwas, Rohtak, Badli, Bahadurgarh, and Gurugram.
             </p>
             <p>
-              The area's strategic importance is driven by massive public and private infrastructure investments, including the 8,000+ acre <strong>Reliance Model Economic Township (MET)</strong>, the <strong>AIIMS National Cancer Institute campus at Badsa</strong>, and the rapid expansion of industrial clusters in nearby IMT Kharkhoda and Manesar.
+              The area&apos;s strategic importance is driven by massive public and private infrastructure investments, including the 8,000+ acre <strong>Reliance Model Economic Township (MET)</strong>, the <strong>AIIMS National Cancer Institute campus at Badsa</strong>, and the rapid expansion of industrial clusters in nearby IMT Kharkhoda and Manesar.
             </p>
           </div>
 

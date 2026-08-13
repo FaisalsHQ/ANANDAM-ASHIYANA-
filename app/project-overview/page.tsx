@@ -10,6 +10,7 @@ import LeadPopups from '@/components/LeadPopups';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import MobileStickyBar from '@/components/MobileStickyBar';
 import JsonLd from '@/components/JsonLd';
+import InfrastructureChart from '@/components/InfrastructureChart';
 import {
   SITE_NAME,
   DEVELOPER_NAME,
@@ -152,6 +153,11 @@ export default function ProjectOverviewPage() {
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            {/* D3 Township Infrastructure Allocation Chart */}
+            <div className="pt-4">
+              <InfrastructureChart />
             </div>
           </div>
 

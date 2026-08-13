@@ -66,7 +66,7 @@ export default function ReviewBlogPage() {
               1. Introduction: What makes Anandam Ashiyana a key township in Jhajjar?
             </h2>
             <p>
-              As real estate values across core Gurgaon and Dwarka Expressway touch peak highs, smart homebuyers and land investors are increasingly turning toward Haryana's strategic government-licensed DDJAY platted developments. <strong>Anandam Ashiyana</strong> in Sector 36, Jhajjar represents one of the most significant newly licensed affordable residential plot townships in the region.
+              As real estate values across core Gurgaon and Dwarka Expressway touch peak highs, smart homebuyers and land investors are increasingly turning toward Haryana&apos;s strategic government-licensed DDJAY platted developments. <strong>Anandam Ashiyana</strong> in Sector 36, Jhajjar represents one of the most significant newly licensed affordable residential plot townships in the region.
             </p>
             <p>
               Spanning 12.4625 acres with 184 planned plots, the township is fully approved by the Department of Town & Country Planning (DTCP Haryana) under Licence No. 79 of 2025 and registered with Haryana RERA (HRERA-PKL-JJR-750-2025).

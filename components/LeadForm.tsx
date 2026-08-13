@@ -13,6 +13,17 @@ interface LeadFormProps {
   onSuccess?: () => void;
 }
 
+export function validateIndianMobile(phoneStr: string): boolean {
+  const digits = phoneStr.replace(/\D/g, '');
+  let clean = digits;
+  if (digits.length === 12 && digits.startsWith('91')) {
+    clean = digits.slice(2);
+  } else if (digits.length === 11 && digits.startsWith('0')) {
+    clean = digits.slice(1);
+  }
+  return /^[6-9]\d{9}$/.test(clean);
+}
+
 export default function LeadForm({
   source,
   headline = "Get Today's Availability & Price List",
@@ -29,11 +40,17 @@ export default function LeadForm({
   const [email, setEmail] = useState('');
   const [plotSize, setPlotSize] = useState('');
   const [consent, setConsent] = useState(true);
+  const [instantCallback, setInstantCallback] = useState(false);
   const [honeypot, setHoneypot] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [success, setSuccess] = useState(false);
+
+  const isPhoneValid = validateIndianMobile(phone);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isEmailValid = email.trim().length > 0 && emailRegex.test(email.trim());
+  const isFormValid = fullName.trim().length > 0 && isPhoneValid && isEmailValid && consent;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,14 +62,12 @@ export default function LeadForm({
       return;
     }
 
-    const cleanPhone = phone.replace(/\D/g, '');
-    if (cleanPhone.length < 10) {
-      setErrorMsg('Please enter a valid 10-digit mobile number');
+    if (!isPhoneValid) {
+      setErrorMsg('Please enter a valid 10-digit Indian mobile number (e.g., 9876543210)');
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.trim() || !emailRegex.test(email)) {
+    if (!isEmailValid) {
       setErrorMsg('Please enter a valid email address');
       return;
     }
@@ -65,12 +80,18 @@ export default function LeadForm({
     setErrorMsg('');
     setLoading(true);
 
-    const formattedPhone = cleanPhone.length === 10 ? `+91${cleanPhone}` : `+${cleanPhone}`;
+    const cleanPhone = phone.replace(/\D/g, '');
+    let finalDigits = cleanPhone;
+    if (cleanPhone.length === 12 && cleanPhone.startsWith('91')) finalDigits = cleanPhone.slice(2);
+    if (cleanPhone.length === 11 && cleanPhone.startsWith('0')) finalDigits = cleanPhone.slice(1);
+
+    const formattedPhone = `+91${finalDigits}`;
     const payload = {
       name: fullName.trim(),
       phone: formattedPhone,
       email: email.trim(),
       plotSize: plotSize || 'Not specified',
+      instantCallback,
       source: source || 'Inline Form',
       page: pathname || '/',
       timestamp: new Date().toISOString(),
@@ -93,7 +114,11 @@ export default function LeadForm({
       setSuccess(true);
 
       // Build WhatsApp message
-      const waMsg = `Hi, I am ${payload.name}. I submitted a lead on ${SITE_DOMAIN} (${payload.source}) for Anandam Ashiyana, Sector 36 Jhajjar. Phone: ${payload.phone}, Email: ${payload.email}, Plot Size Interest: ${payload.plotSize}. Please share today's available inventory, price list & payment plan.`;
+      const priorityPrefix = instantCallback
+        ? '⚡ URGENT: Requesting a CALL-BACK WITHIN 15 MINUTES!'
+        : 'General Inventory & Price Enquiry';
+
+      const waMsg = `Hi, I am ${payload.name}. ${priorityPrefix} (${SITE_DOMAIN} - ${payload.source}). My Phone: ${payload.phone}, Email: ${payload.email}, Plot Size Preference: ${payload.plotSize}. Please share details and ${instantCallback ? 'call me back within 15 minutes.' : 'send available price sheet.'}`;
       const waUrl = getWhatsAppLink(waMsg);
 
       // Trigger callback if provided
@@ -120,7 +145,7 @@ export default function LeadForm({
         </div>
         <h4 className="font-serif text-lg font-bold text-[#FFFcf7]">Thank You, {fullName}!</h4>
         <p className="text-xs text-[#EFE6D8] leading-relaxed">
-          Opening WhatsApp with your request... If WhatsApp didn't open automatically, click below:
+          Opening WhatsApp with your request... If WhatsApp didn&apos;t open automatically, click below:
         </p>
         <a
           href={getWhatsAppLink(`Hi, I am ${fullName}. Please send Anandam Ashiyana plot availability & price list.`)}
@@ -186,18 +211,30 @@ export default function LeadForm({
             WhatsApp Number <span className="text-[#B42318]">*</span>
           </label>
           <div className="flex gap-2">
-            <span className="px-3 py-2.5 bg-[#181512] border border-[#3F3A33] rounded-lg text-xs text-[#D9C7A8] font-medium flex items-center">
+            <span className="px-3 py-2.5 bg-[#181512] border border-[#3F3A33] rounded-lg text-xs text-[#D9C7A8] font-medium flex items-center shrink-0">
               🇮🇳 +91
             </span>
             <input
               type="tel"
               required
-              placeholder="10-digit mobile"
+              placeholder="10-digit mobile (e.g. 9876543210)"
+              maxLength={13}
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="w-full px-3 py-2.5 bg-[#181512] border border-[#3F3A33] rounded-lg text-sm text-[#FFFcf7] placeholder-[#A39A8B] focus:outline-none focus:border-[#B08D4F] transition-colors"
+              onChange={(e) => setPhone(e.target.value.replace(/[^\d\s-+]/g, ''))}
+              className={`w-full px-3 py-2.5 bg-[#181512] border rounded-lg text-sm text-[#FFFcf7] placeholder-[#A39A8B] focus:outline-none transition-colors ${
+                phone.length > 0
+                  ? isPhoneValid
+                    ? 'border-emerald-500/70 focus:border-emerald-500'
+                    : 'border-amber-500/70 focus:border-amber-500'
+                  : 'border-[#3F3A33] focus:border-[#B08D4F]'
+              }`}
             />
           </div>
+          {phone.length > 0 && (
+            <p className={`text-[10px] mt-1 font-medium flex items-center gap-1 ${isPhoneValid ? 'text-emerald-400' : 'text-amber-400'}`}>
+              {isPhoneValid ? '✓ Valid Indian 10-digit mobile number' : '⚠️ Please enter a valid 10-digit mobile starting with 6, 7, 8, or 9'}
+            </p>
+          )}
         </div>
 
         <div>
@@ -231,6 +268,49 @@ export default function LeadForm({
           </select>
         </div>
 
+        {/* Specialized Instant Callback Toggle */}
+        <div
+          onClick={() => setInstantCallback(!instantCallback)}
+          className={`p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between gap-3 ${
+            instantCallback
+              ? 'bg-[#B08D4F]/15 border-[#B08D4F] text-[#FFFcf7] shadow-md'
+              : 'bg-[#181512] border-[#3F3A33] text-[#A39A8B] hover:border-[#D9C7A8]/50'
+          }`}
+        >
+          <div className="flex items-center gap-2.5">
+            <span
+              className={`w-7 h-7 rounded-full flex items-center justify-center text-sm shrink-0 transition-colors ${
+                instantCallback
+                  ? 'bg-[#B08D4F] text-[#1B1814] font-bold'
+                  : 'bg-[#24201A] text-[#A39A8B]'
+              }`}
+            >
+              ⚡
+            </span>
+            <div>
+              <span className="block text-xs font-bold text-[#FFFcf7]">
+                Instant Call-Back (Within 15 Mins)
+              </span>
+              <span className="block text-[10px] text-[#D9C7A8] leading-tight">
+                {instantCallback
+                  ? 'Priority request flagged! We will connect with you immediately.'
+                  : 'Toggle to request an urgent phone call on your mobile.'}
+              </span>
+            </div>
+          </div>
+          <div
+            className={`w-10 h-5 rounded-full p-0.5 transition-colors relative shrink-0 ${
+              instantCallback ? 'bg-[#B08D4F]' : 'bg-[#3F3A33]'
+            }`}
+          >
+            <div
+              className={`w-4 h-4 rounded-full bg-white shadow-xs transition-transform ${
+                instantCallback ? 'translate-x-5' : 'translate-x-0'
+              }`}
+            />
+          </div>
+        </div>
+
         {/* Consent Checkbox */}
         <div className="pt-1 flex items-start gap-2 text-[11px] text-[#A39A8B]">
           <input
@@ -247,8 +327,8 @@ export default function LeadForm({
 
         <button
           type="submit"
-          disabled={loading}
-          className="w-full py-3 px-4 bg-[#B08D4F] hover:bg-[#D9C7A8] text-[#1B1814] font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+          disabled={loading || !isFormValid}
+          className="w-full py-3 px-4 bg-[#B08D4F] hover:bg-[#D9C7A8] text-[#1B1814] font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? (
             <span className="animate-spin rounded-full h-4 w-4 border-2 border-[#1B1814] border-t-transparent"></span>

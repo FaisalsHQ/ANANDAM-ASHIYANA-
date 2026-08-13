@@ -40,7 +40,7 @@ export default function BlogIndexPage() {
     {
       slug: 'anandam-ashiyana-vs-gurgaon-plots',
       title: 'Anandam Ashiyana Jhajjar vs Gurgaon Plots: Detailed Cost & ROI Comparison',
-      excerpt: 'Comparing land ownership in Sector 36 Jhajjar starting at ₹43.77 Lakh* versus micro-markets in Gurgaon demanding ₹2 Cr+. Why smart land investors are choosing Jhajjar growth corridor.',
+      excerpt: 'Comparing land ownership in Sector 36 Jhajjar starting at ₹48.43 Lakh* versus micro-markets in Gurgaon demanding ₹2 Cr+. Why smart land investors are choosing Jhajjar growth corridor.',
       date: 'August 05, 2026',
       readTime: '7 min read',
       category: 'Investment Strategy'

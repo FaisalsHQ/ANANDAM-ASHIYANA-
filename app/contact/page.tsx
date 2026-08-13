@@ -12,6 +12,8 @@ import JsonLd from '@/components/JsonLd';
 import {
   SITE_ADDRESS,
   CONSULTANT_PHONE,
+  PHONE_SECONDARY_DISPLAY,
+  PHONE_SECONDARY_TEL,
   CONSULTANT_EMAIL,
   DISCLAIMER_SHORT,
   getWhatsAppLink,
@@ -73,7 +75,10 @@ export default function ContactPage() {
                 <span className="text-xl">📞</span>
                 <h3 className="font-serif text-base font-bold text-[#1B1814]">Phone / WhatsApp Inquiry</h3>
                 <p>
-                  Call or WhatsApp: <a href={`tel:${CONSULTANT_PHONE}`} className="font-bold text-[#8C6A2F]">{CONSULTANT_PHONE}</a>
+                  Primary (Call / WhatsApp): <a href={`tel:${CONSULTANT_PHONE}`} className="font-bold text-[#8C6A2F] hover:underline">{CONSULTANT_PHONE}</a>
+                </p>
+                <p>
+                  Secondary Helpline: <a href={PHONE_SECONDARY_TEL} className="font-bold text-[#8C6A2F] hover:underline">{PHONE_SECONDARY_DISPLAY}</a>
                 </p>
                 <p className="text-xs text-[#A39A8B]">Timings: 9:00 AM – 8:00 PM (Mon - Sun)</p>
               </div>

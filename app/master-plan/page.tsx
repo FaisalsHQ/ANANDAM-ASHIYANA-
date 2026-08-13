@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -16,6 +17,7 @@ import {
   ROAD_WIDTHS,
   getWhatsAppLink,
   PAGE_WA_MESSAGES,
+  BLUR_DATA_URL,
 } from '@/lib/constants';
 
 export default function MasterPlanPage() {
@@ -67,10 +69,13 @@ export default function MasterPlanPage() {
           <div className="relative bg-[#24201A] border border-[#3F3A33] rounded-2xl overflow-hidden p-4 shadow-2xl">
             {/* Blurred Visual Background */}
             <div className="relative w-full h-[380px] rounded-xl overflow-hidden filter blur-md opacity-40 select-none pointer-events-none">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=1200&q=80"
                 alt="Anandam Ashiyana Master Plan Map"
-                className="w-full h-full object-cover"
+                fill
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
+                className="object-cover"
               />
             </div>
 

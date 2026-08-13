@@ -10,6 +10,7 @@ import LeadPopups from '@/components/LeadPopups';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import MobileStickyBar from '@/components/MobileStickyBar';
 import JsonLd from '@/components/JsonLd';
+import { STARTING_PRICE } from '@/lib/constants';
 
 export default function WhyJhajjarPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -53,7 +54,7 @@ export default function WhyJhajjarPage() {
               Over the last decade, land prices in core Gurgaon and Dwarka Expressway micro-markets have escalated to levels beyond the reach of end-users and smart land investors seeking double-digit capital appreciation. As a result, capital flows are rapidly pivoting toward strategic peripheral belts equipped with world-class industrial hubs and expressways.
             </p>
             <p>
-              <strong>Sector 36, Jhajjar</strong> stands at the forefront of this regional shift. Located just 45 minutes from Gurgaon Cyber Hub, Jhajjar combines affordable entry price points (starting from ₹43.77 Lakh* onwards) with government-backed infrastructure catalysts.
+              <strong>Sector 36, Jhajjar</strong> stands at the forefront of this regional shift. Located just 45 minutes from Gurgaon Cyber Hub, Jhajjar combines affordable entry price points (starting from {STARTING_PRICE}) with government-backed infrastructure catalysts.
             </p>
           </div>
 

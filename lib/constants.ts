@@ -3,11 +3,15 @@ export const SITE_TAGLINE = "Aapka Apna Ashiyana — Sector 36, Jhajjar";
 export const SITE_DOMAIN = "anandamashiyana.in";
 export const SITE_URL = "https://anandamashiyana.in";
 
-export const WA_NUMBER = "911234567890";
-export const PHONE_DISPLAY = "+91 1234567890";
-export const PHONE_TEL = "tel:+911234567890";
+export const WA_NUMBER = "919315421291";
+export const PHONE_DISPLAY = "+91 9315421291";
+export const PHONE_TEL = "tel:+919315421291";
 
-export const CONSULTANT_PHONE = "+91 1234567890";
+export const PHONE_SECONDARY_DISPLAY = "+91 9538824125";
+export const PHONE_SECONDARY_TEL = "tel:+919538824125";
+
+export const CONSULTANT_PHONE = "+91 9315421291";
+export const CONSULTANT_PHONE_SECONDARY = "+91 9538824125";
 export const CONSULTANT_EMAIL = "hello@anandamashiyana.in";
 export const SITE_ADDRESS = "Anandam Ashiyana Site, Sector 36, Chuchakwas / Talao Road, Jhajjar, Haryana - 124103";
 
@@ -29,7 +33,10 @@ export const SCHEME_NAME = "Deen Dayal Jan Awas Yojana (DDJAY)";
 export const PROJECT_AREA = "12.4625 Acres";
 export const TOTAL_PLOTS = "184 Freehold Plots";
 export const PLOT_SIZES = "72 to 179 sq. yd. (Highlight sizes: 97–178 sq. yd.)";
-export const STARTING_PRICE = "₹43.77 Lakh* onwards";
+export const STARTING_PRICE = "₹48.43 Lakh* onwards";
+export const RATE_SILVER = "₹49,666";
+export const RATE_GOLD = "₹51,666";
+export const RATE_PLATINUM = "₹55,666";
 export const COMMERCIAL_AREA = "1,515.77 sq. yd. daily-need retail";
 export const ROAD_WIDTHS = "24m Main Approach & 9m Internal Sector Roads";
 export const EXPECTED_POSSESSION = "Indicative September 2027 (confirm from RERA/developer)";
@@ -42,6 +49,9 @@ export const PRICE_DISCLAIMER =
 
 export const DISCLAIMER_SHORT = 
   "Authorized RERA real estate consultant platform. Prices & plot availability subject to change. HRERA Registration: HRERA-PKL-JJR-776-2025.";
+
+export const BLUR_DATA_URL =
+  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4IDUiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjUiIGZpbGw9IiMxYjE4MTQiLz48cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI1IiBmaWxsPSIjYjA4ZDRmIiBmaWxsLW9wYWNpdHk9IjAuMiIvPjwvc3ZnPg==";
 
 export function getWhatsAppLink(customMessage?: string): string {
   const defaultMessage = `Hi, I came across your website ${SITE_DOMAIN} and I want to know about Anandam Ashiyana, Sector 36 Jhajjar (DDJAY plots by Prish Group). Please share latest price, available plot sizes, payment plan and site-visit details.`;

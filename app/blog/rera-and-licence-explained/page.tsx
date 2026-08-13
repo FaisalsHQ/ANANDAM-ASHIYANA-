@@ -91,7 +91,7 @@ export default function RERABlogPage() {
               How to Verify HRERA Online
             </h2>
             <p>
-              Buyers can easily verify the project credentials by visiting <a href={RERA_URL} target="_blank" rel="noopener noreferrer" className="text-[#8C6A2F] underline font-bold">haryanarera.gov.in</a>, navigating to the "Registered Projects" tab, and searching for <strong>HRERA-PKL-JJR-750-2025</strong> or selecting "Jhajjar" district.
+              Buyers can easily verify the project credentials by visiting <a href={RERA_URL} target="_blank" rel="noopener noreferrer" className="text-[#8C6A2F] underline font-bold">haryanarera.gov.in</a>, navigating to the &quot;Registered Projects&quot; tab, and searching for <strong>HRERA-PKL-JJR-750-2025</strong> or selecting &quot;Jhajjar&quot; district.
             </p>
           </div>
         </div>

@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { SITE_NAME, getWhatsAppLink } from '@/lib/constants';
-import TopHeaderStrip from './TopHeaderStrip';
 
 interface HeaderProps {
   onOpenLeadModal?: (source?: string) => void;
@@ -42,8 +41,6 @@ export default function Header({ onOpenLeadModal }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 w-full transition-all duration-300">
-      <TopHeaderStrip />
-
       <nav
         className={`w-full bg-[#1B1814]/95 backdrop-blur-md border-b border-[#3F3A33]/40 text-[#FFFcf7] transition-all duration-300 ${
           isScrolled ? 'py-2.5 shadow-xl' : 'py-3.5'

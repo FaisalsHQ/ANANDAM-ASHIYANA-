@@ -37,7 +37,7 @@ export default function DDJAYGuidePage() {
             Deen Dayal Jan Awas Yojana (DDJAY) — Complete Buyer Guide
           </h1>
           <p className="text-xs sm:text-sm text-[#D9C7A8] max-w-2xl mx-auto leading-relaxed">
-            Understand how Haryana Government's affordable platted housing policy empowers buyers with freehold registry, stilt+4 construction rights, and higher FAR benefits.
+            Understand how Haryana Government&apos;s affordable platted housing policy empowers buyers with freehold registry, stilt+4 construction rights, and higher FAR benefits.
           </p>
         </div>
       </section>

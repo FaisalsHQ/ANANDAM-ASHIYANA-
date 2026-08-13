@@ -33,7 +33,7 @@ export default function PrivacyPolicyPage() {
           <p className="text-xs text-[#A39A8B]">Last Updated: August 2026</p>
 
           <p>
-            This Privacy Policy describes how our authorized real estate consultancy platform ("we", "us", "our") collects, uses, and safeguards personal information submitted by users ("you", "your") visiting our website for Anandam Ashiyana, Sector 36, Jhajjar.
+            This Privacy Policy describes how our authorized real estate consultancy platform (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) collects, uses, and safeguards personal information submitted by users (&quot;you&quot;, &quot;your&quot;) visiting our website for Anandam Ashiyana, Sector 36, Jhajjar.
           </p>
 
           <h2 className="font-serif text-lg font-bold text-[#1B1814] pt-2">
@@ -64,7 +64,7 @@ export default function PrivacyPolicyPage() {
             4. Communication Opt-Out
           </h2>
           <p>
-            If you wish to stop receiving updates or WhatsApp communications from our team, you can opt out at any time by replying "STOP" on WhatsApp or sending an email to {CONSULTANT_EMAIL} or calling {CONSULTANT_PHONE}.
+            If you wish to stop receiving updates or WhatsApp communications from our team, you can opt out at any time by replying &quot;STOP&quot; on WhatsApp or sending an email to {CONSULTANT_EMAIL} or calling {CONSULTANT_PHONE}.
           </p>
 
           <h2 className="font-serif text-lg font-bold text-[#1B1814] pt-2">

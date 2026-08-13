@@ -60,7 +60,7 @@ export default function CompareBlogPage() {
               Over the past 5 years, residential land rates along Dwarka Expressway, Sohna Road, and New Gurgaon have crossed ₹1.5 Lakh to ₹2.5 Lakh per square yard. For an average family or investor, purchasing a standard 100–150 sq. yd. plot in Gurgaon requires an upfront investment of ₹1.8 Cr to ₹3 Cr, excluding stamp duty and construction costs.
             </p>
             <p>
-              In contrast, <strong>Anandam Ashiyana in Sector 36, Jhajjar</strong> offers DTCP-licensed DDJAY plots starting at <strong>{STARTING_PRICE}</strong> (~₹43.77 Lakh onwards), situated just 45 minutes from Cyber City Gurugram.
+              In contrast, <strong>Anandam Ashiyana in Sector 36, Jhajjar</strong> offers DTCP-licensed DDJAY plots starting at <strong>{STARTING_PRICE}</strong> (~₹48.43 Lakh onwards), situated just 45 minutes from Cyber City Gurugram.
             </p>
           </div>
 
@@ -81,7 +81,7 @@ export default function CompareBlogPage() {
                 <tbody className="divide-y divide-[#D9C7A8] bg-[#F7F1E8]">
                   <tr className="hover:bg-[#EFE6D8]">
                     <td className="p-3 font-bold text-[#1B1814]">Starting Ticket Size</td>
-                    <td className="p-3 font-bold text-[#2F4A3A]">₹43.77 Lakh* onwards</td>
+                    <td className="p-3 font-bold text-[#2F4A3A]">₹48.43 Lakh* onwards</td>
                     <td className="p-3 text-[#3F3A33]">₹1.8 Cr – ₹3.5 Cr+</td>
                   </tr>
                   <tr className="hover:bg-[#EFE6D8]">
@@ -109,7 +109,7 @@ export default function CompareBlogPage() {
               Conclusion: Why Smart Money is Pivoting to Jhajjar
             </h2>
             <p>
-              While Gurgaon offers established corporate density, its high entry price limits room for rapid percentage capital appreciation. Jhajjar Sector 36 offers an early-entry window into an industrial power belt anchored by Reliance MET and Maruti Suzuki's plant at Kharkhoda—delivering higher ROI potential for initial land investors.
+              While Gurgaon offers established corporate density, its high entry price limits room for rapid percentage capital appreciation. Jhajjar Sector 36 offers an early-entry window into an industrial power belt anchored by Reliance MET and Maruti Suzuki&apos;s plant at Kharkhoda—delivering higher ROI potential for initial land investors.
             </p>
           </div>
         </div>

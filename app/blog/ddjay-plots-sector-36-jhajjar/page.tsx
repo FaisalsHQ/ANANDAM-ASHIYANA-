@@ -44,7 +44,7 @@ export default function DDJAYBlogPage() {
             Why DDJAY Affordable Plots in Sector 36 Jhajjar Are the Top Choice for Land Buyers
           </h1>
           <p className="text-xs sm:text-sm text-[#D9C7A8] leading-relaxed">
-            Discover how Haryana's Deen Dayal Jan Awas Yojana policy protects buyers with legal title security, bank loan availability, and flexible Stilt+4 construction rights.
+            Discover how Haryana&apos;s Deen Dayal Jan Awas Yojana policy protects buyers with legal title security, bank loan availability, and flexible Stilt+4 construction rights.
           </p>
         </div>
       </section>

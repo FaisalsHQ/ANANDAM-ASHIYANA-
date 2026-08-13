@@ -8,11 +8,19 @@ import {
   RERA_NUMBER,
   PROJECT_LOCATION,
   STARTING_PRICE,
+  FAQ_ITEMS,
 } from '@/lib/constants';
+
+interface FAQItem {
+  question?: string;
+  answer?: string;
+  q?: string;
+  a?: string;
+}
 
 interface JsonLdProps {
   type?: 'home' | 'page' | 'faq' | 'article';
-  faqData?: Array<{ question: string; answer: string }>;
+  faqData?: FAQItem[];
   articleData?: {
     headline: string;
     description: string;
@@ -31,10 +39,10 @@ export default function JsonLd({ type = 'page', faqData, articleData }: JsonLdPr
     image: `${SITE_URL}/hero-banner.jpg`,
     description:
       'RERA-verified real estate consultant providing verified plot inventory, price lists, and site visit assistance for Anandam Ashiyana, Sector 36, Jhajjar. Developed by Prish Realty Pvt. Ltd.',
-    telephone: '+911234567890',
+    telephone: PHONE_DISPLAY,
     email: EMAILS.primary,
     areaServed: ['Jhajjar', 'Gurugram', 'Delhi NCR', 'Haryana'],
-    priceRange: '₹43.77 Lakh - ₹85 Lakh',
+    priceRange: '₹48.43 Lakh - ₹99.85 Lakh',
   };
 
   const realEstateListingSchema = {
@@ -47,7 +55,7 @@ export default function JsonLd({ type = 'page', faqData, articleData }: JsonLdPr
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'INR',
-      lowPrice: '4377000',
+      lowPrice: '4843428',
       priceValidationUntil: '2027-12-31',
     },
     address: {
@@ -58,17 +66,25 @@ export default function JsonLd({ type = 'page', faqData, articleData }: JsonLdPr
     },
   };
 
-  const faqSchema =
+  // Determine effective FAQ items (either custom passed or standard FAQ_ITEMS when type === 'faq')
+  const itemsToUse: FAQItem[] | undefined =
     faqData && faqData.length > 0
+      ? faqData
+      : type === 'faq'
+      ? FAQ_ITEMS
+      : undefined;
+
+  const faqSchema =
+    itemsToUse && itemsToUse.length > 0
       ? {
           '@context': 'https://schema.org',
           '@type': 'FAQPage',
-          mainEntity: faqData.map((item) => ({
+          mainEntity: itemsToUse.map((item) => ({
             '@type': 'Question',
-            name: item.question,
+            name: item.question || item.q || '',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: item.answer,
+              text: item.answer || item.a || '',
             },
           })),
         }
@@ -124,3 +140,4 @@ export default function JsonLd({ type = 'page', faqData, articleData }: JsonLdPr
     </>
   );
 }
+
